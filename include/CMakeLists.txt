@@ -10,7 +10,7 @@ list (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 #
 
 set (SOURCES )
-set (HEADERS etg.hpp)
+set (HEADERS etg.hpp etg_qt5.hpp etg_std.hpp)
 
 
 #
