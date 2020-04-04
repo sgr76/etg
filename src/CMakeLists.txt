@@ -18,8 +18,9 @@ set (HEADERS enum.hpp factory.hpp file.hpp file_pool.hpp header.hpp implementati
 #
 
 add_subdirectory (std)
-# add_subdirectory (qt4)
+add_subdirectory (std_ns)
 add_subdirectory (qt5)
+add_subdirectory (qt5_ns)
 
 
 #

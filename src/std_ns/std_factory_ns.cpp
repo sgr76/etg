@@ -1,4 +1,4 @@
-/*! @file qt5_factory.cpp
+/*! @file std_factory.cpp
  *
  *  @brief
  *
@@ -19,14 +19,14 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "qt5_factory.hpp"
+#include "std_factory_ns.hpp"
 
-#include "qt5_enum.hpp"
-#include "qt5_header.hpp"
-#include "qt5_implementation.hpp"
+#include "std_enum_ns.hpp"
+#include "std_header_ns.hpp"
+#include "std_implementation_ns.hpp"
 
 
-GeneratorFactoryQt5::GeneratorFactoryQt5 ()
+GeneratorFactoryStdNs::GeneratorFactoryStdNs ()
 {
 }
 
@@ -35,13 +35,14 @@ GeneratorFactoryQt5::GeneratorFactoryQt5 ()
  *
  * @return TODO
  */
-const std::string & GeneratorFactoryQt5::getName ()
+const std::string & GeneratorFactoryStdNs::getName ()
 {
     return name;
 }
-bool GeneratorFactoryQt5::getUsesNamespaces()
+
+bool GeneratorFactoryStdNs::getUsesNamespaces()
 {
-    return false;
+    return true;
 }
 
 
@@ -50,9 +51,9 @@ bool GeneratorFactoryQt5::getUsesNamespaces()
  * @param ed TODO
  * @return TODO
  */
-std::shared_ptr<EtgEnum> GeneratorFactoryQt5::newEnum (const clang::EnumDecl * ed) const
+std::shared_ptr<EtgEnum> GeneratorFactoryStdNs::newEnum (const clang::EnumDecl * ed) const
 {
-    return std::shared_ptr<EtgEnum>(new EtgEnumQt5(ed));
+    return std::shared_ptr<EtgEnum>(new EtgEnumStdNs(ed));
 }
 
 
@@ -63,11 +64,11 @@ std::shared_ptr<EtgEnum> GeneratorFactoryQt5::newEnum (const clang::EnumDecl * e
  * @param _srcInc TODO
  * @return TODO
  */
-std::shared_ptr<EtgHeader> GeneratorFactoryQt5::newHeader (EtgFile::EtgFiletype _type,
+std::shared_ptr<EtgHeader> GeneratorFactoryStdNs::newHeader (EtgFile::EtgFiletype _type,
                                                            const std::string    _filename,
                                                            const std::string  & _srcInc) const
 {
-    return std::shared_ptr<EtgHeader>(new EtgHeaderQt5(_type,
+    return std::shared_ptr<EtgHeader>(new EtgHeaderStdNs(_type,
                                                        _filename,
                                                        _srcInc));
 }
@@ -81,12 +82,12 @@ std::shared_ptr<EtgHeader> GeneratorFactoryQt5::newHeader (EtgFile::EtgFiletype 
  * @param _enumDef TODO
  * @return TODO
  */
-std::shared_ptr<EtgHeader> GeneratorFactoryQt5::newHeader (EtgFile::EtgFiletype      _type,
+std::shared_ptr<EtgHeader> GeneratorFactoryStdNs::newHeader (EtgFile::EtgFiletype      _type,
                                                            const std::string         _filename,
                                                            std::shared_ptr<EtgScope> _scope,
                                                            std::shared_ptr<EtgEnum>  _enumDef) const
 {
-    return std::shared_ptr<EtgHeader>(new EtgHeaderQt5(_type,
+    return std::shared_ptr<EtgHeader>(new EtgHeaderStdNs(_type,
                                                        _filename,
                                                        _scope,
                                                        _enumDef));
@@ -98,12 +99,12 @@ std::shared_ptr<EtgHeader> GeneratorFactoryQt5::newHeader (EtgFile::EtgFiletype 
  * @param _filename TODO
  * @return TODO
  */
-std::shared_ptr<EtgImplementation> GeneratorFactoryQt5::newImplementation (const std::string _filename) const
+std::shared_ptr<EtgImplementation> GeneratorFactoryStdNs::newImplementation (const std::string _filename) const
 {
-    return std::shared_ptr<EtgImplementation>(new EtgImplementationQt5(_filename));
+    return std::shared_ptr<EtgImplementation>(new EtgImplementationStdNs(_filename));
 }
 
 
-const std::string GeneratorFactoryQt5::name = "qt5";
+const std::string GeneratorFactoryStdNs::name = "std";
 
-GeneratorFactory::GeneratorRegistration<GeneratorFactoryQt5> GeneratorFactoryQt5::factory;
+GeneratorFactory::GeneratorRegistration<GeneratorFactoryStdNs> GeneratorFactoryStdNs::factory;

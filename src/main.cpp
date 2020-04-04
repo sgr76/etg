@@ -48,6 +48,7 @@ static cl::opt<std::string> outImpl("o", cl::desc("specify the name of the gener
 static cl::opt<std::string> srcInclude("i", cl::desc("specify include for source file"), cl::value_desc("filename"));
 static cl::opt<std::string> generator("generator", cl::desc("select the source generator"), cl::value_desc("generator name"));
 static cl::opt<bool>        parseIncluded("parse-included", cl::desc("parse included files"));
+static cl::opt<bool>        useNamespaces("use-namespcaes", cl::desc("use namespcaes instead of template specialization"));
 
 cl::opt<bool> verbose("v", cl::desc("verbose"));
 
@@ -155,7 +156,7 @@ int main (int           argc,
         generator = "std";
     }
 
-    if (!GeneratorFactory::select(generator))
+    if (!GeneratorFactory::select(generator,useNamespaces))
     {
         std::cerr << "generator '" << generator << "' not found" << std::endl;
 

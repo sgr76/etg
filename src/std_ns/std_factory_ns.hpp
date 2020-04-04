@@ -1,4 +1,4 @@
-/*! @file qt5_factory.hpp
+/*! @file std_factory.hpp
  *
  *  @brief
  *
@@ -24,15 +24,15 @@
 #include <factory.hpp>
 
 
-class GeneratorFactoryQt5 : public GeneratorFactory
+class GeneratorFactoryStdNs : public GeneratorFactory
 {
 protected:
-    GeneratorFactoryQt5 (const GeneratorFactoryQt5 &) = delete;
+    GeneratorFactoryStdNs (const GeneratorFactoryStdNs &) = delete;
 
-    GeneratorFactoryQt5 & operator = (const GeneratorFactoryQt5 &) = delete;
+    GeneratorFactoryStdNs & operator = (const GeneratorFactoryStdNs &) = delete;
 
 public:
-    GeneratorFactoryQt5 ();
+    GeneratorFactoryStdNs ();
 
     std::shared_ptr<EtgEnum> newEnum (const clang::EnumDecl * ed) const override;
 
@@ -54,5 +54,5 @@ bool getUsesNamespaces () override;
 private:
     static const std::string                          name;
 
-    static GeneratorRegistration<GeneratorFactoryQt5> factory;
+    static GeneratorRegistration<GeneratorFactoryStdNs> factory;
 };
