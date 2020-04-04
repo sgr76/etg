@@ -9,15 +9,15 @@ int main (int     argc,
     QTextStream out(stdout);
 
     // debug
-    out << int(TestNamespace::TestEnum::Value_2) << " => " << TestNamespace::etg::TestEnum::getDebugSymbol(TestNamespace::TestEnum::Value_2) << endl;
+    out << int(TestNamespace::TestEnum::Value_2) << " => " << etg<TestNamespace::TestEnum>::debugSymbol(TestNamespace::TestEnum::Value_2) << endl;
 
     // token
-    out << "token '" << TestNamespace::etg::TestEnum::getToken(TestNamespace::TestEnum::Value_2) << "' of " << int(TestNamespace::etg::TestEnum::getEnum("special value")) << endl;
+    out << "token '" << etg<TestNamespace::TestEnum>::token(TestNamespace::TestEnum::Value_2) << "' of " << int(etg<TestNamespace::TestEnum>::cast("special value")) << endl;
 
     // cast
     try
     {
-        out << "cast (1): " << int(TestNamespace::etg::TestEnum::cast(1)) << endl;
+        out << "cast (1): " << int(etg<TestNamespace::TestEnum>::cast(1)) << endl;
     }
     catch (const std::exception & e)
     {
@@ -26,7 +26,7 @@ int main (int     argc,
 
     try
     {
-        out << "cast (5): " << int(TestNamespace::etg::TestEnum::cast(5)) << endl;
+        out << "cast (5): " << int(etg<TestNamespace::TestEnum>::cast(5)) << endl;
 
         return 1;
     }
@@ -36,12 +36,12 @@ int main (int     argc,
     }
 
     // translation
-    out << int(TestNamespace::TestEnum::Value_2) << " => " << TestNamespace::etg::TestEnum::getTranslation(TestNamespace::TestEnum::Value_2) << endl;
+    out << int(TestNamespace::TestEnum::Value_2) << " => " << etg<TestNamespace::TestEnum>::translation(TestNamespace::TestEnum::Value_2) << endl;
 
     // iterator
     out << "iterator:";
 
-    for (auto & I:TestNamespace::etg::TestEnum())
+    for (auto & I:etg<TestNamespace::TestEnum>())
     {
         out << " " << int(I);
     }

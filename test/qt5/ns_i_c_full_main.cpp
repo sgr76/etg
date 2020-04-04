@@ -9,15 +9,15 @@ int main (int     argc,
     QTextStream out(stdout);
 
     // debug
-    out << int(TestNamespace::TestClass::TestEnum::Value_2) << " => " << TestNamespace::etg::TestClass::TestEnum::getDebugSymbol(TestNamespace::TestClass::TestEnum::Value_2) << endl;
+    out << int(TestNamespace::TestClass::TestEnum::Value_2) << " => " << etg<TestNamespace::TestClass::TestEnum>::debugSymbol(TestNamespace::TestClass::TestEnum::Value_2) << endl;
 
     // token
-    out << "token '" << TestNamespace::etg::TestClass::TestEnum::getToken(TestNamespace::TestClass::TestEnum::Value_2) << "' of " << int(TestNamespace::etg::TestClass::TestEnum::getEnum("special value")) << endl;
+    out << "token '" << etg<TestNamespace::TestClass::TestEnum>::token(TestNamespace::TestClass::TestEnum::Value_2) << "' of " << int(etg<TestNamespace::TestClass::TestEnum>::cast("special value")) << endl;
 
     // cast
     try
     {
-        out << "cast (1): " << int(TestNamespace::etg::TestClass::TestEnum::cast(1)) << endl;
+        out << "cast (1): " << int(etg<TestNamespace::TestClass::TestEnum>::cast(1)) << endl;
     }
     catch (const std::exception & e)
     {
@@ -26,7 +26,7 @@ int main (int     argc,
 
     try
     {
-        out << "cast (5): " << int(TestNamespace::etg::TestClass::TestEnum::cast(5)) << endl;
+        out << "cast (5): " << int(etg<TestNamespace::TestClass::TestEnum>::cast(5)) << endl;
 
         return 1;
     }
@@ -36,12 +36,12 @@ int main (int     argc,
     }
 
     // translation
-    out << int(TestNamespace::TestClass::TestEnum::Value_2) << " => " << TestNamespace::etg::TestClass::TestEnum::getTranslation(TestNamespace::TestClass::TestEnum::Value_2) << endl;
+    out << int(TestNamespace::TestClass::TestEnum::Value_2) << " => " << etg<TestNamespace::TestClass::TestEnum>::translation(TestNamespace::TestClass::TestEnum::Value_2) << endl;
 
     // iterator
     out << "iterator:";
 
-    for (auto & I:TestNamespace::etg::TestClass::TestEnum())
+    for (auto & I:etg<TestNamespace::TestClass::TestEnum>())
     {
         out << " " << int(I);
     }

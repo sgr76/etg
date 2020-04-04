@@ -59,23 +59,20 @@ void EtgHeaderQt5::generate ()
             out << "#include <" << srcInc << ">" << std::endl << std::endl;
         }
 
+        out << "#include <etg_qt5.hpp>" << std::endl;
         out << "#include <functional>" << std::endl;
         out << "#include <QtCore/QString>" << std::endl;
         out << "#include <QtCore/QHash>" << std::endl;
         out << "#include <QtCore/QMap>" << std::endl;
         out << "#include <set>" << std::endl << std::endl;
 
-        EtgScopeWalker currentNamespace;
-
         for (auto & D : defs)
         {
             std::string fqEnum(D.first->getPathImpDef() + D.second->getName());
 
-            currentNamespace.walkHeader(out,
-                                        D.first);
-
-            out << "class " << D.second->getName() << " {" << std::endl;
-            out << "public:" << std::endl;
+            out << "template<>" << std::endl;
+            out << "struct etg<" << fqEnum << ">" << std::endl;
+            out << "{" << std::endl;
 
             if (D.second->getUseException())
             {
@@ -103,7 +100,7 @@ void EtgHeaderQt5::generate ()
                 out << "  static std::set<" << fqEnum << ">::const_iterator end();" << std::endl;
             }
 
-            out << "protected:" << std::endl;
+            out << "private:" << std::endl;
 
             if (D.second->getUseDebug())
             {
@@ -129,8 +126,6 @@ void EtgHeaderQt5::generate ()
             out << "};" << std::endl << std::endl;
         }
 
-        currentNamespace.finish(out);
-
         out.close();
     }
 } // generate
@@ -142,7 +137,7 @@ void EtgHeaderQt5::generateMethods_Exception (std::ofstream                  & o
 {
     if (_enum->getUseDebug())
     {
-        out << "  static const QString getDebugSymbol(" << fqEnum << " v);" << std::endl;
+        out << "  static const QString debugSymbol(" << fqEnum << " v);" << std::endl;
     }
 
     if (_enum->getUseCast())
@@ -152,13 +147,13 @@ void EtgHeaderQt5::generateMethods_Exception (std::ofstream                  & o
 
     if (_enum->getUseToken())
     {
-        out << "  static const QString getToken(" << fqEnum << " v);" << std::endl;
-        out << "  static " << fqEnum << " getEnum(const QString &v);" << std::endl;
+        out << "  static const QString token(" << fqEnum << " v);" << std::endl;
+        out << "  static " << fqEnum << " cast(const QString &v);" << std::endl;
     }
 
     if (_enum->getTranslate())
     {
-        out << "  static const QString getTranslation(" << fqEnum << " v);" << std::endl;
+        out << "  static const QString translation(" << fqEnum << " v);" << std::endl;
     }
 }
 
@@ -174,7 +169,7 @@ void EtgHeaderQt5::generateMethods_ExceptionDefault (std::ofstream              
 
     if (_enum->getUseToken())
     {
-        out << "  static " << fqEnum << " getEnum(const QString &v, " << fqEnum << " d);" << std::endl;
+        out << "  static " << fqEnum << " cast(const QString &v, " << fqEnum << " d);" << std::endl;
     }
 }
 
@@ -185,7 +180,7 @@ void EtgHeaderQt5::generateMethods_InvalidValue (std::ofstream                  
 {
     if (_enum->getUseDebug())
     {
-        out << "  static const QString getDebugSymbol(" << fqEnum << " v);" << std::endl;
+        out << "  static const QString debugSymbol(" << fqEnum << " v);" << std::endl;
     }
 
     if (EtgEnum::none != _enum->getUseCast())
@@ -195,12 +190,12 @@ void EtgHeaderQt5::generateMethods_InvalidValue (std::ofstream                  
 
     if (_enum->getUseToken())
     {
-        out << "  static const QString getToken(" << fqEnum << " v);" << std::endl;
-        out << "  static " << fqEnum << " getEnum(const QString &v, " << fqEnum << " d=" << _enum->getInvalidValue() << ");" << std::endl;
+        out << "  static const QString token(" << fqEnum << " v);" << std::endl;
+        out << "  static " << fqEnum << " cast(const QString &v, " << fqEnum << " d=" << _enum->getInvalidValue() << ");" << std::endl;
     }
 
     if (_enum->getTranslate())
     {
-        out << "  static const QString getTranslation(" << fqEnum << " v);" << std::endl;
+        out << "  static const QString translation(" << fqEnum << " v);" << std::endl;
     }
 }

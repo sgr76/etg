@@ -81,7 +81,7 @@ void EtgImplementationQt5::generateMethods_Exception_InvalidValue (std::ofstream
 {
     if (_enum->getUseToken())
     {
-        out << "const QString " << scope << "::getToken(" << fqEnum << " v) {" << std::endl;
+        out << "const QString etg<" << fqEnum << ">::token(" << fqEnum << " v) {" << std::endl;
         out << "  if (enum2token.contains(v)) {" << std::endl;
         out << "    return enum2token.value(v);" << std::endl;
         out << "  }" << std::endl << std::endl;
@@ -99,11 +99,11 @@ void EtgImplementationQt5::generateMethods_Exception_InvalidValue (std::ofstream
 
         if (_enum->getUseException())
         {
-            out << fqEnum << " " << scope << "::getEnum(const QString &v) {" << std::endl;
+            out << fqEnum << " etg<" << fqEnum << ">::cast(const QString &v) {" << std::endl;
         }
         else
         {
-            out << fqEnum << " " << scope << "::getEnum(const QString &v, " << fqEnum << " d) {" << std::endl;
+            out << fqEnum << " etg<" << fqEnum << ">::cast(const QString &v, " << fqEnum << " d) {" << std::endl;
         }
 
         if (_enum->getUseCaseInsensitive())
@@ -155,11 +155,11 @@ void EtgImplementationQt5::generateMethods_Exception_InvalidValue (std::ofstream
     {
         if (_enum->getUseException())
         {
-            out << fqEnum << " " << scope << "::cast(int v) {" << std::endl;
+            out << fqEnum << " etg<" << fqEnum << ">::cast(int v) {" << std::endl;
         }
         else
         {
-            out << fqEnum << " " << scope << "::cast(int v, " << fqEnum << " d) {" << std::endl;
+            out << fqEnum << " etg<" << fqEnum << ">::cast(int v, " << fqEnum << " d) {" << std::endl;
         }
 
         out << "  if (" << lookupTable << ".end() != " << lookupTable << ".find((" << fqEnum << ")v)) {" << std::endl;
@@ -180,18 +180,18 @@ void EtgImplementationQt5::generateMethods_Exception_InvalidValue (std::ofstream
 
     if (_enum->getUseIterator())
     {
-        out << "std::set<" << fqEnum << ">::const_iterator " << scope << "::begin() {" << std::endl;
+        out << "std::set<" << fqEnum << ">::const_iterator etg<" << fqEnum << ">::begin() {" << std::endl;
         out << "  return enumCast.cbegin();" << std::endl;
         out << "}" << std::endl << std::endl;
 
-        out << "std::set<" << fqEnum << ">::const_iterator " << scope << "::end() {" << std::endl;
+        out << "std::set<" << fqEnum << ">::const_iterator etg<" << fqEnum << ">::end() {" << std::endl;
         out << "  return enumCast.cend();" << std::endl;
         out << "}" << std::endl << std::endl;
     }
 
     if (_enum->getUseDebug())
     {
-        out << "const QString " << scope << "::getDebugSymbol(" << fqEnum << " v) {" << std::endl;
+        out << "const QString etg<" << fqEnum << ">::debugSymbol(" << fqEnum << " v) {" << std::endl;
         out << "  if (enum2symbol.contains(v)) {" << std::endl;
         out << "    return enum2symbol.value(v);" << std::endl;
         out << "  }" << std::endl << std::endl;
@@ -210,7 +210,7 @@ void EtgImplementationQt5::generateMethods_Exception_InvalidValue (std::ofstream
 
     if (_enum->getTranslate())
     {
-        out << "const QString " << scope << "::getTranslation(" << fqEnum << " v) {" << std::endl;
+        out << "const QString etg<" << fqEnum << ">::translation(" << fqEnum << " v) {" << std::endl;
         out << "  if (enum2translation.contains(v)) {" << std::endl;
         out << "    return enum2translation.value(v)();" << std::endl;
         out << "  }" << std::endl << std::endl;
@@ -236,7 +236,7 @@ void EtgImplementationQt5::generateMethods_ExceptionDefault (std::ofstream      
 {
     if (EtgEnum::none != _enum->getUseCast())
     {
-        out << fqEnum << " " << scope << "::cast(int v, " << fqEnum << " d) {" << std::endl;
+        out << fqEnum << " etg<" << fqEnum << ">::cast(int v, " << fqEnum << " d) {" << std::endl;
         out << "  try {" << std::endl;
         out << "    return cast(v);" << std::endl;
         out << "  } catch (const std::exception &e) {" << std::endl;
@@ -247,7 +247,7 @@ void EtgImplementationQt5::generateMethods_ExceptionDefault (std::ofstream      
 
     if (_enum->getUseToken())
     {
-        out << fqEnum << " " << scope << "::getEnum(const QString &v, " << fqEnum << " d) {" << std::endl;
+        out << fqEnum << " etg<" << fqEnum << ">::cast(const QString &v, " << fqEnum << " d) {" << std::endl;
         out << "  try {" << std::endl;
         out << "    return getEnum(v);" << std::endl;
         out << "  } catch (const std::exception &e) {" << std::endl;

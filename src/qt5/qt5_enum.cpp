@@ -83,7 +83,7 @@ void EtgEnumQt5::generateValues (std::ofstream     & out,
 
     if (NoDebug != addDebug)
     {
-        out << "const QMap<" << fqEnum << ", QString> " << scope << "::enum2symbol = {";
+        out << "const QMap<" << fqEnum << ", QString> etg<" << fqEnum << ">::enum2symbol = {";
 
         for (auto & I : items)
         {
@@ -106,7 +106,7 @@ void EtgEnumQt5::generateValues (std::ofstream     & out,
     {
         first = true;
 
-        out << "const QMap<" << fqEnum << ", QString> " << scope << "::enum2token = {";
+        out << "const QMap<" << fqEnum << ", QString> etg<" << fqEnum << ">::enum2token = {";
 
         for (auto & I : items)
         {
@@ -119,7 +119,7 @@ void EtgEnumQt5::generateValues (std::ofstream     & out,
 
         first = true;
 
-        out << "const QHash<QString, " << fqEnum << "> " << scope << "::token2enum = {";
+        out << "const QHash<QString, " << fqEnum << "> etg<" << fqEnum << ">::token2enum = {";
 
         for (auto & I : items)
         {
@@ -151,7 +151,7 @@ void EtgEnumQt5::generateValues (std::ofstream     & out,
     {
         first = true;
 
-        out << "const QMap<" << fqEnum << ", std::function<QString()>> " << scope << "::enum2translation = {";
+        out << "const QMap<" << fqEnum << ", std::function<QString()>> etg<" << fqEnum << ">::enum2translation = {";
 
         for (auto & I : items)
         {
@@ -167,7 +167,7 @@ void EtgEnumQt5::generateValues (std::ofstream     & out,
     {
         first = true;
 
-        out << "const std::set<" << fqEnum << "> " << scope << "::enumCast = {";
+        out << "const std::set<" << fqEnum << "> etg<" << fqEnum << ">::enumCast = {";
 
         for (auto & I : items)
         {
