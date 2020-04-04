@@ -75,9 +75,9 @@ void EtgEnumStdNs::generateTexts (std::ofstream & out)
  * @return TODO
  */
 void EtgEnumStdNs::generateValues (std::ofstream     & out,
-                                 const std::string & fqEnum,
-                                 const std::string & scope,
-                                 bool                withTranslation)
+                                   const std::string & fqEnum,
+                                   const std::string & scope,
+                                   bool                withTranslation)
 {
     bool first = true;
 

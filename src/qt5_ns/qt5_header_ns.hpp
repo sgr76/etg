@@ -28,14 +28,14 @@ class EtgHeaderQt5Ns : public EtgHeader
 {
 public:
     EtgHeaderQt5Ns (EtgFiletype       _type,
-                  const std::string _filename);
+                    const std::string _filename);
     EtgHeaderQt5Ns (EtgFiletype         _type,
-                  const std::string   _filename,
-                  const std::string & _srcInc);
+                    const std::string   _filename,
+                    const std::string & _srcInc);
     EtgHeaderQt5Ns (EtgFiletype               _type,
-                  const std::string         _filename,
-                  std::shared_ptr<EtgScope> _scope,
-                  std::shared_ptr<EtgEnum>  _enumDef);
+                    const std::string         _filename,
+                    std::shared_ptr<EtgScope> _scope,
+                    std::shared_ptr<EtgEnum>  _enumDef);
 
     void generate () override;
 

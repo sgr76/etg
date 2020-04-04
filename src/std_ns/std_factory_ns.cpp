@@ -40,7 +40,8 @@ const std::string & GeneratorFactoryStdNs::getName ()
     return name;
 }
 
-bool GeneratorFactoryStdNs::getUsesNamespaces()
+
+bool GeneratorFactoryStdNs::getUsesNamespaces ()
 {
     return true;
 }
@@ -65,12 +66,12 @@ std::shared_ptr<EtgEnum> GeneratorFactoryStdNs::newEnum (const clang::EnumDecl *
  * @return TODO
  */
 std::shared_ptr<EtgHeader> GeneratorFactoryStdNs::newHeader (EtgFile::EtgFiletype _type,
-                                                           const std::string    _filename,
-                                                           const std::string  & _srcInc) const
+                                                             const std::string    _filename,
+                                                             const std::string  & _srcInc) const
 {
     return std::shared_ptr<EtgHeader>(new EtgHeaderStdNs(_type,
-                                                       _filename,
-                                                       _srcInc));
+                                                         _filename,
+                                                         _srcInc));
 }
 
 
@@ -83,14 +84,14 @@ std::shared_ptr<EtgHeader> GeneratorFactoryStdNs::newHeader (EtgFile::EtgFiletyp
  * @return TODO
  */
 std::shared_ptr<EtgHeader> GeneratorFactoryStdNs::newHeader (EtgFile::EtgFiletype      _type,
-                                                           const std::string         _filename,
-                                                           std::shared_ptr<EtgScope> _scope,
-                                                           std::shared_ptr<EtgEnum>  _enumDef) const
+                                                             const std::string         _filename,
+                                                             std::shared_ptr<EtgScope> _scope,
+                                                             std::shared_ptr<EtgEnum>  _enumDef) const
 {
     return std::shared_ptr<EtgHeader>(new EtgHeaderStdNs(_type,
-                                                       _filename,
-                                                       _scope,
-                                                       _enumDef));
+                                                         _filename,
+                                                         _scope,
+                                                         _enumDef));
 }
 
 

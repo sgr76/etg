@@ -49,10 +49,11 @@ public:
 
 protected:
     const std::string & getName () override;
-bool getUsesNamespaces () override;
+
+    bool getUsesNamespaces () override;
 
 private:
-    static const std::string                          name;
+    static const std::string                            name;
 
     static GeneratorRegistration<GeneratorFactoryQt5Ns> factory;
 };

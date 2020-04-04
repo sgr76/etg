@@ -30,8 +30,8 @@ class EtgImplementationStdNs : public EtgImplementation
 public:
     EtgImplementationStdNs (const std::string _filename);
     EtgImplementationStdNs (const std::string         _filename,
-                          std::shared_ptr<EtgScope> _scope,
-                          std::shared_ptr<EtgEnum>  _enumDef);
+                            std::shared_ptr<EtgScope> _scope,
+                            std::shared_ptr<EtgEnum>  _enumDef);
 
     void generate () override;
 

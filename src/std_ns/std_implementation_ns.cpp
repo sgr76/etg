@@ -75,10 +75,10 @@ void EtgImplementationStdNs::generate ()
 
 
 void EtgImplementationStdNs::generateMethods_Exception_InvalidValue (std::ofstream                  & out,
-                                                                   const std::shared_ptr<EtgEnum> & _enum,
-                                                                   const std::string &
-                                                                   scope,
-                                                                   const std::string & fqEnum)
+                                                                     const std::shared_ptr<EtgEnum> & _enum,
+                                                                     const std::string &
+                                                                     scope,
+                                                                     const std::string & fqEnum)
 {
     if (_enum->getUseToken())
     {
@@ -217,9 +217,9 @@ void EtgImplementationStdNs::generateMethods_Exception_InvalidValue (std::ofstre
 
 
 void EtgImplementationStdNs::generateMethods_ExceptionDefault (std::ofstream                  & out,
-                                                             const std::shared_ptr<EtgEnum> & _enum,
-                                                             const std::string              & scope,
-                                                             const std::string              & fqEnum)
+                                                               const std::shared_ptr<EtgEnum> & _enum,
+                                                               const std::string              & scope,
+                                                               const std::string              & fqEnum)
 {
     if (EtgEnum::none != _enum->getUseCast())
     {

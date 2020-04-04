@@ -50,7 +50,8 @@ protected:
 
 public:
     static const GeneratorFactory * get ();
-    static bool select (const std::string & name,bool _useNamespaces);
+    static bool select (const std::string & name,
+                        bool                _useNamespaces);
 
     virtual std::shared_ptr<EtgEnum> newEnum (const clang::EnumDecl * ed) const = 0;
 
@@ -67,7 +68,7 @@ public:
 
 protected:
     virtual const std::string & getName () = 0;
-    virtual bool getUsesNamespaces () = 0;
+    virtual bool getUsesNamespaces ()      = 0;
     static void registerGenerator (std::shared_ptr<GeneratorFactory> generator);
 
     template<class T>
@@ -79,6 +80,7 @@ protected:
             GeneratorFactory::registerGenerator(std::shared_ptr<GeneratorFactory>(new T));
         }
     };
+
 
 private:
     static std::shared_ptr<GeneratorFactory>             selected;

@@ -39,7 +39,9 @@ const std::string & GeneratorFactoryQt5::getName ()
 {
     return name;
 }
-bool GeneratorFactoryQt5::getUsesNamespaces()
+
+
+bool GeneratorFactoryQt5::getUsesNamespaces ()
 {
     return false;
 }

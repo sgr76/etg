@@ -40,10 +40,12 @@ const std::string & GeneratorFactoryStd::getName ()
     return name;
 }
 
-bool GeneratorFactoryStd::getUsesNamespaces()
+
+bool GeneratorFactoryStd::getUsesNamespaces ()
 {
     return false;
 }
+
 
 /*! @brief
  *

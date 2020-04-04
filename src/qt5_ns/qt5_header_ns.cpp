@@ -28,17 +28,17 @@
 
 
 EtgHeaderQt5Ns::EtgHeaderQt5Ns (EtgFile::EtgFiletype _type,
-                            const std::string    _filename,
-                            const std::string  & _srcInc)
+                                const std::string    _filename,
+                                const std::string  & _srcInc)
     : EtgHeader(_type, _filename, _srcInc)
 {
 }
 
 
 EtgHeaderQt5Ns::EtgHeaderQt5Ns (EtgFile::EtgFiletype      _type,
-                            const std::string         _filename,
-                            std::shared_ptr<EtgScope> _scope,
-                            std::shared_ptr<EtgEnum>  _enumDef)
+                                const std::string         _filename,
+                                std::shared_ptr<EtgScope> _scope,
+                                std::shared_ptr<EtgEnum>  _enumDef)
     : EtgHeader(_type, _filename, _scope, _enumDef)
 {
 }
@@ -137,8 +137,8 @@ void EtgHeaderQt5Ns::generate ()
 
 
 void EtgHeaderQt5Ns::generateMethods_Exception (std::ofstream                  & out,
-                                              const std::shared_ptr<EtgEnum> & _enum,
-                                              const std::string              & fqEnum)
+                                                const std::shared_ptr<EtgEnum> & _enum,
+                                                const std::string              & fqEnum)
 {
     if (_enum->getUseDebug())
     {
@@ -164,8 +164,8 @@ void EtgHeaderQt5Ns::generateMethods_Exception (std::ofstream                  &
 
 
 void EtgHeaderQt5Ns::generateMethods_ExceptionDefault (std::ofstream                  & out,
-                                                     const std::shared_ptr<EtgEnum> & _enum,
-                                                     const std::string              & fqEnum)
+                                                       const std::shared_ptr<EtgEnum> & _enum,
+                                                       const std::string              & fqEnum)
 {
     if (EtgEnum::none != _enum->getUseCast())
     {
@@ -180,8 +180,8 @@ void EtgHeaderQt5Ns::generateMethods_ExceptionDefault (std::ofstream            
 
 
 void EtgHeaderQt5Ns::generateMethods_InvalidValue (std::ofstream                  & out,
-                                                 const std::shared_ptr<EtgEnum> & _enum,
-                                                 const std::string              & fqEnum)
+                                                   const std::shared_ptr<EtgEnum> & _enum,
+                                                   const std::string              & fqEnum)
 {
     if (_enum->getUseDebug())
     {

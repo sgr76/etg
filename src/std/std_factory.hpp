@@ -49,7 +49,8 @@ public:
 
 protected:
     const std::string & getName () override;
-bool getUsesNamespaces () override;
+
+    bool getUsesNamespaces () override;
 
 private:
     static const std::string                          name;

@@ -156,7 +156,8 @@ int main (int           argc,
         generator = "std";
     }
 
-    if (!GeneratorFactory::select(generator,useNamespaces))
+    if (!GeneratorFactory::select(generator,
+                                  useNamespaces))
     {
         std::cerr << "generator '" << generator << "' not found" << std::endl;
 

@@ -29,8 +29,8 @@ class EtgImplementationQt5Ns : public EtgImplementation
 public:
     EtgImplementationQt5Ns (const std::string _filename);
     EtgImplementationQt5Ns (const std::string         _filename,
-                          std::shared_ptr<EtgScope> _scope,
-                          std::shared_ptr<EtgEnum>  _enumDef);
+                            std::shared_ptr<EtgScope> _scope,
+                            std::shared_ptr<EtgEnum>  _enumDef);
 
     void generate () override;
 
