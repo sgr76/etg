@@ -83,7 +83,7 @@ void EtgEnumStd::generateValues (std::ofstream     & out,
 
     if (NoDebug != addDebug)
     {
-        out << "const std::map<" << fqEnum << ", std::string> " << scope << "::enum2symbol = {";
+        out << "const std::map<" << fqEnum << ", std::string> etg<" << fqEnum << ">::enum2symbol = {";
 
         for (auto & I : items)
         {
@@ -106,7 +106,7 @@ void EtgEnumStd::generateValues (std::ofstream     & out,
     {
         first = true;
 
-        out << "const std::map<" << fqEnum << ", std::string> " << scope << "::enum2token = {";
+        out << "const std::map<" << fqEnum << ", std::string> etg<" << fqEnum << ">::enum2token = {";
 
         for (auto & I : items)
         {
@@ -119,7 +119,7 @@ void EtgEnumStd::generateValues (std::ofstream     & out,
 
         first = true;
 
-        out << "const std::map<std::string, " << fqEnum << "> " << scope << "::token2enum = {";
+        out << "const std::map<std::string, " << fqEnum << "> etg<" << fqEnum << ">::token2enum = {";
 
         for (auto & I : items)
         {
@@ -151,14 +151,14 @@ void EtgEnumStd::generateValues (std::ofstream     & out,
     {
         first = true;
 
-        out << "std::map<" << fqEnum << ", std::string> " << scope << "::enum2translation;" << std::endl;
+        out << "std::map<" << fqEnum << ", std::string> etg<" << fqEnum << ">::enum2translation;" << std::endl;
     }
 
     if (set == getSetDataSource())
     {
         first = true;
 
-        out << "const std::set<" << fqEnum << "> " << scope << "::enumCast = {";
+        out << "const std::set<" << fqEnum << "> etg<" << fqEnum << ">::enumCast = {";
 
         for (auto & I : items)
         {

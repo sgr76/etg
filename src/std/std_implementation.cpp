@@ -84,11 +84,11 @@ void EtgImplementationStd::generateMethods_Exception_InvalidValue (std::ofstream
     {
         if (_enum->getUseException())
         {
-            out << fqEnum << " " << scope << "::getEnum(const std::string &v) {" << std::endl;
+            out << fqEnum << " etg<" << fqEnum << ">::cast(const std::string &v) {" << std::endl;
         }
         else
         {
-            out << fqEnum << " " << scope << "::getEnum(const std::string &v, " << fqEnum << " d) {" << std::endl;
+            out << fqEnum << " etg<" << fqEnum << ">::cast(const std::string &v, " << fqEnum << " d) {" << std::endl;
         }
 
         if (_enum->getUseCaseInsensitive())
@@ -117,7 +117,7 @@ void EtgImplementationStd::generateMethods_Exception_InvalidValue (std::ofstream
 
         out << "}" << std::endl << std::endl;
 
-        out << "const std::string & " << scope << "::getToken(" << fqEnum << " v) {" << std::endl;
+        out << "const std::string & etg<" << fqEnum << ">::token(" << fqEnum << " v) {" << std::endl;
         out << "  auto rval = enum2token.find(v);" << std::endl;
         out << "  if (enum2token.end() != rval) {" << std::endl;
         out << "    return rval->second;" << std::endl;
@@ -139,11 +139,11 @@ void EtgImplementationStd::generateMethods_Exception_InvalidValue (std::ofstream
     {
         if (_enum->getUseException())
         {
-            out << fqEnum << " " << scope << "::cast(int v) {" << std::endl;
+            out << fqEnum << " etg<" << fqEnum << ">::cast(int v) {" << std::endl;
         }
         else
         {
-            out << fqEnum << " " << scope << "::cast(int v, " << fqEnum << " d) {" << std::endl;
+            out << fqEnum << " etg<" << fqEnum << ">::cast(int v, " << fqEnum << " d) {" << std::endl;
         }
 
         std::string lookupTable;
@@ -185,18 +185,18 @@ void EtgImplementationStd::generateMethods_Exception_InvalidValue (std::ofstream
 
     if (_enum->getUseIterator())
     {
-        out << "std::set<" << fqEnum << ">::const_iterator " << scope << "::begin() {" << std::endl;
+        out << "std::set<" << fqEnum << ">::const_iterator etg<" << fqEnum << ">::begin() {" << std::endl;
         out << "  return enumCast.cbegin();" << std::endl;
         out << "}" << std::endl << std::endl;
 
-        out << "std::set<" << fqEnum << ">::const_iterator " << scope << "::end() {" << std::endl;
+        out << "std::set<" << fqEnum << ">::const_iterator etg<" << fqEnum << ">::end() {" << std::endl;
         out << "  return enumCast.cend();" << std::endl;
         out << "}" << std::endl << std::endl;
     }
 
     if (_enum->getUseDebug())
     {
-        out << "const std::string & " << scope << "::getDebugSymbol(" << fqEnum << " v) {" << std::endl;
+        out << "const std::string & etg<" << fqEnum << ">::debugSymbol(" << fqEnum << " v) {" << std::endl;
         out << "  auto rval = enum2symbol.find(v);" << std::endl;
         out << "  if (enum2symbol.end() != rval) {" << std::endl;
         out << "    return rval->second;" << std::endl;
@@ -223,7 +223,7 @@ void EtgImplementationStd::generateMethods_ExceptionDefault (std::ofstream      
 {
     if (EtgEnum::none != _enum->getUseCast())
     {
-        out << fqEnum << " " << scope << "::cast(int v, " << fqEnum << " d) {" << std::endl;
+        out << fqEnum << " etg<" << fqEnum << ">::cast(int v, " << fqEnum << " d) {" << std::endl;
         out << "  try {" << std::endl;
         out << "    return cast(v);" << std::endl;
         out << "  } catch (const std::exception &e) {" << std::endl;
@@ -234,7 +234,7 @@ void EtgImplementationStd::generateMethods_ExceptionDefault (std::ofstream      
 
     if (_enum->getUseToken())
     {
-        out << fqEnum << " " << scope << "::getEnum(const std::string &v, " << fqEnum << " d) {" << std::endl;
+        out << fqEnum << " etg<" << fqEnum << ">::getEnum(const std::string &v, " << fqEnum << " d) {" << std::endl;
         out << "  try {" << std::endl;
         out << "    return getEnum(v);" << std::endl;
         out << "  } catch (const std::exception &e) {" << std::endl;

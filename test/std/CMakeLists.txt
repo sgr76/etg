@@ -7,7 +7,7 @@
 # options
 #
 
-set (ETG_INCLUDE_DIR "../../include" CACHE PATH "path to etg.hpp")
+set (ETG_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/include" CACHE PATH "path to etg.hpp")
 set (ETG_EXECUTABLE "etg" CACHE FILEPATH "etg program executable")
 
 set (CMAKE_INCLUDE_CURRENT_DIR ON)

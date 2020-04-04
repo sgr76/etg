@@ -61,21 +61,18 @@ void EtgHeaderStd::generate ()
             out << "#include <" << srcInc << ">" << std::endl << std::endl;
         }
 
+        out << "#include <etg_std.hpp>" << std::endl;
         out << "#include <string>" << std::endl;
         out << "#include <set>" << std::endl;
         out << "#include <map>" << std::endl << std::endl;
-
-        EtgScopeWalker currentNamespace;
 
         for (auto & D : defs)
         {
             std::string fqEnum(D.first->getPathImpDef() + D.second->getName());
 
-            currentNamespace.walkHeader(out,
-                                        D.first);
-
-            out << "class " << D.second->getName() << " {" << std::endl;
-            out << "public:" << std::endl;
+            out << "template<>" << std::endl;
+            out << "struct etg<" << fqEnum << ">" << std::endl;
+            out << "{" << std::endl;
 
             if (D.second->getUseException())
             {
@@ -129,8 +126,6 @@ void EtgHeaderStd::generate ()
             out << "};" << std::endl << std::endl;
         }
 
-        currentNamespace.finish(out);
-
         out.close();
     }
 } // generate
@@ -142,7 +137,7 @@ void EtgHeaderStd::generateMethods_Exception (std::ofstream                  & o
 {
     if (_enum->getUseDebug())
     {
-        out << "  static const std::string& getDebugSymbol(" << fqEnum << " v);" << std::endl;
+        out << "  static const std::string& debugSymbol(" << fqEnum << " v);" << std::endl;
     }
 
     if (EtgEnum::none != _enum->getUseCast())
@@ -152,8 +147,8 @@ void EtgHeaderStd::generateMethods_Exception (std::ofstream                  & o
 
     if (_enum->getUseToken())
     {
-        out << "  static const std::string& getToken(" << fqEnum << " v);" << std::endl;
-        out << "  static " << fqEnum << " getEnum(const std::string &v);" << std::endl;
+        out << "  static const std::string& token(" << fqEnum << " v);" << std::endl;
+        out << "  static " << fqEnum << " cast(const std::string &v);" << std::endl;
     }
 }
 
@@ -169,7 +164,7 @@ void EtgHeaderStd::generateMethods_ExceptionDefault (std::ofstream              
 
     if (_enum->getUseToken())
     {
-        out << "  static " << fqEnum << " getEnum(const std::string &v, " << fqEnum << " d);" << std::endl;
+        out << "  static " << fqEnum << " cast(const std::string &v, " << fqEnum << " d);" << std::endl;
     }
 }
 
@@ -180,7 +175,7 @@ void EtgHeaderStd::generateMethods_InvalidValue (std::ofstream                  
 {
     if (_enum->getUseDebug())
     {
-        out << "  static const std::string& getDebugSymbol(" << fqEnum << " v);" << std::endl;
+        out << "  static const std::string& debugSymbol(" << fqEnum << " v);" << std::endl;
     }
 
     if (EtgEnum::none != _enum->getUseCast())
@@ -190,7 +185,7 @@ void EtgHeaderStd::generateMethods_InvalidValue (std::ofstream                  
 
     if (_enum->getUseToken())
     {
-        out << "  static const std::string& getToken(" << fqEnum << " v);" << std::endl;
-        out << "  static " << fqEnum << " getEnum(const std::string &v, " << fqEnum << " d=" << _enum->getInvalidValue() << ");" << std::endl;
+        out << "  static const std::string& token(" << fqEnum << " v);" << std::endl;
+        out << "  static " << fqEnum << " cast(const std::string &v, " << fqEnum << " d=" << _enum->getInvalidValue() << ");" << std::endl;
     }
 }

@@ -9,15 +9,15 @@ int main (int     argc,
           char ** argv)
 {
     // debug
-    cout << TestClass::Value_2 << " => " << etg::TestClass::TestEnum::getDebugSymbol(TestClass::Value_2) << endl;
+    cout << TestClass::Value_2 << " => " << etg<TestClass::TestEnum>::debugSymbol(TestClass::Value_2) << endl;
 
     // token
-    cout << "token '" << etg::TestClass::TestEnum::getToken(TestClass::TestEnum::Value_2) << "' of " << etg::TestClass::TestEnum::getEnum("special value") << endl;
+    cout << "token '" << etg<TestClass::TestEnum>::token(TestClass::TestEnum::Value_2) << "' of " << etg<TestClass::TestEnum>::cast("special value") << endl;
 
     // cast
     try
     {
-        cout << "cast (1): " << etg::TestClass::TestEnum::cast(1) << endl;
+        cout << "cast (1): " << etg<TestClass::TestEnum>::cast(1) << endl;
     }
     catch (const std::exception & e)
     {
@@ -26,7 +26,7 @@ int main (int     argc,
 
     try
     {
-        cout << "cast (5): " << etg::TestClass::TestEnum::cast(5) << endl;
+        cout << "cast (5): " << etg<TestClass::TestEnum>::cast(5) << endl;
 
         return 1;
     }
@@ -36,12 +36,12 @@ int main (int     argc,
     }
 
     // translation
-    // cout << TestClass::TestEnum::Value_2 << " => " << etg::TestClass::TestEnum::getTranslation(TestClass::TestEnum::Value_2) << endl;
+    // cout << TestClass::TestEnum::Value_2 << " => " << etg<TestClass::TestEnum>::getTranslation(TestClass::TestEnum::Value_2) << endl;
 
     // iterator
     cout << "iterator:";
 
-    for (auto & I:etg::TestClass::TestEnum())
+    for (auto & I:etg<TestClass::TestEnum>())
     {
         cout << " " << I;
     }

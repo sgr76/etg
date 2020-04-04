@@ -9,15 +9,15 @@ int main (int     argc,
           char ** argv)
 {
     // debug
-    cout << int(TestEnum::Value_2) << " => " << etg::TestEnum::getDebugSymbol(TestEnum::Value_2) << endl;
+    cout << int(TestEnum::Value_2) << " => " << etg<TestEnum>::debugSymbol(TestEnum::Value_2) << endl;
 
     // token
-    cout << "token '" << etg::TestEnum::getToken(TestEnum::Value_2) << "' of " << int(etg::TestEnum::getEnum("special value")) << endl;
+    cout << "token '" << etg<TestEnum>::token(TestEnum::Value_2) << "' of " << int(etg<TestEnum>::cast("special value")) << endl;
 
     // cast
     try
     {
-        cout << "cast (1): " << int(etg::TestEnum::cast(1)) << endl;
+        cout << "cast (1): " << int(etg<TestEnum>::cast(1)) << endl;
     }
     catch (const std::exception & e)
     {
@@ -26,7 +26,7 @@ int main (int     argc,
 
     try
     {
-        cout << "cast (5): " << int(etg::TestEnum::cast(5)) << endl;
+        cout << "cast (5): " << int(etg<TestEnum>::cast(5)) << endl;
 
         return 1;
     }
@@ -41,7 +41,7 @@ int main (int     argc,
     // iterator
     cout << "iterator:";
 
-    for (auto & I:etg::TestEnum())
+    for (auto & I:etg<TestEnum>())
     {
         cout << " " << int(I);
     }
