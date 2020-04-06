@@ -66,6 +66,7 @@ public:
     bool getUseToken ();
     bool getUseIterator ();
     bool getTranslate ();
+    bool getFormat ();
     bool getUseException ();
     bool getUseExceptionWithDefault ();
     bool getUseCaseInsensitive ();
@@ -108,6 +109,7 @@ protected:
     bool                              addToken;
     bool                              addTranslation;
     bool                              addIterator;
+    bool                              addFormat;
 
     bool                              useException;
     bool                              exceptionWithDefault;

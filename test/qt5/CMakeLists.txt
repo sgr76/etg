@@ -4,6 +4,7 @@
 
 find_package (Qt5Core)
 find_package (Qt5Widgets)
+find_package (fmt)
 # find_package (Qt5LinguistTools)
 
 
@@ -15,7 +16,7 @@ set (ETG_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/include" CACHE PATH "path to etg.hpp")
 set (ETG_EXECUTABLE "etg" CACHE FILEPATH "etg program executable")
 
 set (CMAKE_INCLUDE_CURRENT_DIR ON)
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -ggdb -O2 -DETG_QT5")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -ggdb -O2 -DETG_QT5")
 set (UNCRUSTIFY_FILES )
 
 include_directories (${ETG_INCLUDE_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
@@ -35,7 +36,7 @@ macro (test_definition)
     add_custom_command (OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${PARAM_PREFIX}_etg.cpp ${CMAKE_CURRENT_BINARY_DIR}/${PARAM_PREFIX}_etg.hpp COMMAND ${ETG_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/${PARAM_PREFIX}_enum.hpp -o ${PARAM_PREFIX}_etg.cpp -H ${PARAM_PREFIX}_etg.hpp -i ${PARAM_PREFIX}_enum.hpp --generator=qt5 -- -I${ETG_INCLUDE_DIR} -I${Qt5Core_INCLUDE_DIRS} -DETG_QT5 -std=c++11 DEPENDS ${PARAM_PREFIX}_enum.hpp)
 
     add_executable (${PARAM_NAME} ${PARAM_PREFIX}_main.cpp ${PARAM_PREFIX}_etg.cpp)
-    target_link_libraries (${PARAM_NAME} Qt5::Core Qt5::Widgets)
+    target_link_libraries (${PARAM_NAME} Qt5::Core Qt5::Widgets fmt::fmt)
     add_test (NAME test_${PARAM_NAME} COMMAND ${PARAM_NAME} WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
     
     list (APPEND UNCRUSTIFY_FILES ${PARAM_PREFIX}_main.cpp ${PARAM_PREFIX}_enum.hpp)
@@ -65,6 +66,26 @@ test_definition (NAME qt5_full             PREFIX full)
 test_definition (NAME qt5_c_full           PREFIX c_full)
 # test_definition (NAME qt5_c_casei          PREFIX c_casei)
 # test_definition (NAME qt5_c_excptdef       PREFIX c_excptdef)
+
+# test_definition (NAME qt5_f_debug            PREFIX f_debug)
+# test_definition (NAME qt5_f_long_debug       PREFIX f_long_debug)
+# test_definition (NAME qt5_f_cast             PREFIX f_cast)
+# test_definition (NAME qt5_f_token            PREFIX f_token)
+# test_definition (NAME qt5_f_translation      PREFIX f_translation)
+# test_definition (NAME qt5_f_iterator         PREFIX f_iterator)
+# test_definition (NAME qt5_f_full             PREFIX f_full)
+# test_definition (NAME qt5_f_casei            PREFIX f_casei)
+# test_definition (NAME qt5_f_excptdef         PREFIX f_excptdef)
+
+# test_definition (NAME qt5_f_c_debug          PREFIX f_c_debug)
+# test_definition (NAME qt5_f_c_long_debug     PREFIX f_c_long_debug)
+# test_definition (NAME qt5_f_c_cast           PREFIX f_c_cast)
+# test_definition (NAME qt5_f_c_token          PREFIX f_c_token)
+# test_definition (NAME qt5_f_c_translation    PREFIX f_c_translation)
+# test_definition (NAME qt5_f_c_iterator       PREFIX f_c_iterator)
+test_definition (NAME qt5_f_c_full           PREFIX f_c_full)
+# test_definition (NAME qt5_f_c_casei          PREFIX f_c_casei)
+# test_definition (NAME qt5_f_c_excptdef       PREFIX f_c_excptdef)
 
 # test_definition (NAME qt5_ns_debug         PREFIX ns_debug)
 # test_definition (NAME qt5_ns_long_debug    PREFIX ns_long_debug)

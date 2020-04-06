@@ -37,6 +37,7 @@ EtgEnum::EtgEnum (const clang::EnumDecl * ed)
       addToken(false),
       addTranslation(false),
       addIterator(false),
+      addFormat(false),
       useException(true),
       exceptionWithDefault(false),
       caseInsensitive(false),
@@ -89,6 +90,11 @@ EtgEnum::EtgEnum (const clang::EnumDecl * ed)
         if (addIterator)
         {
             std::cerr << "  iterator";
+        }
+
+        if (addFormat)
+        {
+            std::cerr << "  format";
         }
 
         if (useException)
@@ -221,6 +227,11 @@ void EtgEnum::parseEnumAttrItem (const std::string & attr)
     if ("iterator" == attr)
     {
         addIterator = true;
+    }
+
+    if ("format" == attr)
+    {
+        addFormat = true;
     }
 
     if ("exception_default" == attr)
@@ -411,6 +422,12 @@ bool EtgEnum::getUseToken ()
 bool EtgEnum::getTranslate ()
 {
     return addTranslation;
+}
+
+
+bool EtgEnum::getFormat ()
+{
+    return addFormat;
 }
 
 
