@@ -59,7 +59,23 @@ void EtgHeaderQt5Ns::generate ()
             out << "#include <" << srcInc << ">" << std::endl << std::endl;
         }
 
+        bool needFormatHeader = false;
+
+        for (auto & D : defs)
+        {
+            if (D.second->getFormat())
+            {
+                needFormatHeader = true;
+            }
+        }
+
         out << "#include <functional>" << std::endl;
+
+        if (needFormatHeader)
+        {
+            out << "#include <fmt/format.h>" << std::endl;
+        }
+
         out << "#include <QtCore/QString>" << std::endl;
         out << "#include <QtCore/QHash>" << std::endl;
         out << "#include <QtCore/QMap>" << std::endl;
@@ -130,6 +146,73 @@ void EtgHeaderQt5Ns::generate ()
         }
 
         currentNamespace.finish(out);
+
+        for (auto & D : defs)
+        {
+            if (D.second->getFormat())
+            {
+                std::string fqEnum(D.first->getPathImpDef() + D.second->getName());
+
+                out << "template <>" << std::endl;
+                out << "struct fmt::formatter<" << fqEnum << "> {" << std::endl;
+                out << "  char select='i';" << std::endl;
+
+                out << "  constexpr auto parse(format_parse_context& ctx) {" << std::endl;
+                out << "    auto it = ctx.begin(), end = ctx.end();" << std::endl;
+                out << "    if (it != end && (*it == 'i'";
+
+                if (D.second->getUseDebug())
+                {
+                    out << " || *it == 'd'";
+                }
+
+                if (D.second->getUseToken())
+                {
+                    out << " || *it == 't'";
+                }
+
+                if (D.second->getTranslate())
+                {
+                    out << " || *it == 'l'";
+                }
+
+                out << ")) select = *it++;" << std::endl;
+                out << "    if (it != end && *it != '}') throw format_error(\"invalid format\");" << std::endl;
+
+                out << "    return it; " << std::endl;
+                out << "  }" << std::endl;
+
+                out << "  template <typename FormatContext>" << std::endl;
+                out << "  auto format(const " << fqEnum << "& d, FormatContext& ctx) {" << std::endl;
+                out << "    switch (select)" << std::endl;
+                out << "    {" << std::endl;
+
+                if (D.second->getUseDebug())
+                {
+                    out << "    case 'd':" << std::endl;
+                    out << "      return format_to(ctx.out(), \"{}\", etg" << fqEnum << "::getDebugSymbol(d).toStdString());" << std::endl;
+                }
+
+                if (D.second->getUseToken())
+                {
+                    out << "    case 't':" << std::endl;
+                    out << "      return format_to(ctx.out(), \"{}\", etg" << fqEnum << "::getToken(d).toStdString());" << std::endl;
+                }
+
+                if (D.second->getTranslate())
+                {
+                    out << "    case 'l':" << std::endl;
+                    out << "      return format_to(ctx.out(), \"{}\", etg" << fqEnum << "::getTranslation(d).toStdString());" << std::endl;
+                }
+
+                out << "    case 'i':" << std::endl;
+                out << "    default:" << std::endl;
+                out << "      return format_to(ctx.out(), \"{}\", int(d));" << std::endl;
+                out << "    }" << std::endl;
+                out << "  }" << std::endl;
+                out << "};" << std::endl;
+            }
+        }
 
         out.close();
     }
