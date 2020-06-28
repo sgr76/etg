@@ -28,7 +28,7 @@ macro (test_definition)
   
     cmake_parse_arguments (PARAM "${options}" "${oneValueParams}" "${multiValueParams}" ${ARGN})
 
-    add_custom_command (OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${PARAM_PREFIX}_etg.cpp ${CMAKE_CURRENT_BINARY_DIR}/${PARAM_PREFIX}_etg.hpp COMMAND ${ETG_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/${PARAM_PREFIX}_enum.hpp -o ${PARAM_PREFIX}_etg.cpp -H ${PARAM_PREFIX}_etg.hpp -i ${PARAM_PREFIX}_enum.hpp --generator=std --use-namespcaes -- -I${ETG_INCLUDE_DIR} -std=c++11 DEPENDS ${PARAM_PREFIX}_enum.hpp)
+    add_custom_command (OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${PARAM_PREFIX}_etg.cpp ${CMAKE_CURRENT_BINARY_DIR}/${PARAM_PREFIX}_etg.hpp COMMAND ${ETG_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/${PARAM_PREFIX}_enum.hpp -o ${PARAM_PREFIX}_etg.cpp -H ${PARAM_PREFIX}_etg.hpp -i ${PARAM_PREFIX}_enum.hpp --generator=std --generator-style=namespaces -- -I${ETG_INCLUDE_DIR} -std=c++11 DEPENDS ${PARAM_PREFIX}_enum.hpp)
 
     add_executable (ns_${PARAM_NAME} ${PARAM_PREFIX}_main.cpp ${PARAM_PREFIX}_etg.cpp)
     add_test (NAME test_ns_${PARAM_NAME} COMMAND ns_${PARAM_NAME} WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})

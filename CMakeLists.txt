@@ -21,7 +21,7 @@ enabled_uncrustify ()
 #
 
 set (CMAKE_INCLUDE_CURRENT_DIR ON)
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -ggdb -O2 ${LLVM_CFLAGS}")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -ggdb -O2 ${LLVM_CFLAGS}")
 include_directories (${CLANG_INCLUDE_DIRS})
 link_directories (${CLANG_LIBRARY_DIRS})
 
@@ -46,7 +46,7 @@ install (FILES COPYING COPYING.LESSER DESTINATION share/doc/etg)
 # package
 #
 
-set (CPACK_PACKAGE_VERSION "0.2")
+set (CPACK_PACKAGE_VERSION "0.9")
 set (CPACK_PACKAGE_CONTACT "sgroth@gmx.de")
 set (CPACK_PACKAGE_VENDOR "Sebastian Groth")
 set (CPACK_PACKAGE_DESCRIPTION_SUMMARY "etg: c++ string table generator for enumerations")

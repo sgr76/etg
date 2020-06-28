@@ -33,7 +33,7 @@ macro (test_definition)
   
     cmake_parse_arguments (PARAM "${options}" "${oneValueParams}" "${multiValueParams}" ${ARGN})
 
-    add_custom_command (OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${PARAM_PREFIX}_etg.cpp ${CMAKE_CURRENT_BINARY_DIR}/${PARAM_PREFIX}_etg.hpp COMMAND ${ETG_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/${PARAM_PREFIX}_enum.hpp -o ${PARAM_PREFIX}_etg.cpp -H ${PARAM_PREFIX}_etg.hpp -i ${PARAM_PREFIX}_enum.hpp --generator=qt5 -- -I${ETG_INCLUDE_DIR} -I${Qt5Core_INCLUDE_DIRS} -DETG_QT5 -std=c++11 DEPENDS ${PARAM_PREFIX}_enum.hpp)
+    add_custom_command (OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${PARAM_PREFIX}_etg.cpp ${CMAKE_CURRENT_BINARY_DIR}/${PARAM_PREFIX}_etg.hpp COMMAND ${ETG_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/${PARAM_PREFIX}_enum.hpp -o ${PARAM_PREFIX}_etg.cpp -H ${PARAM_PREFIX}_etg.hpp -i ${PARAM_PREFIX}_enum.hpp --generator=qt5 --generator-style=templates -- -I${ETG_INCLUDE_DIR} -I${Qt5Core_INCLUDE_DIRS} -DETG_QT5 -std=c++11 DEPENDS ${PARAM_PREFIX}_enum.hpp)
 
     add_executable (${PARAM_NAME} ${PARAM_PREFIX}_main.cpp ${PARAM_PREFIX}_etg.cpp)
     target_link_libraries (${PARAM_NAME} Qt5::Core Qt5::Widgets fmt::fmt)

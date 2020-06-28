@@ -41,16 +41,24 @@ using namespace clang::ast_matchers;
 using namespace clang;
 using namespace llvm;
 
+enum GeneratorStyle {
+  namespaces,templates
+};
 
 static cl::OptionCategory   MyToolCategory("my options");
-static cl::opt<std::string> outHeader("H", cl::desc("specify the name of the generated header file"), cl::value_desc("filename"));
-static cl::opt<std::string> outImpl("o", cl::desc("specify the name of the generated implementation file"), cl::value_desc("filename"));
-static cl::opt<std::string> srcInclude("i", cl::desc("specify include for source file"), cl::value_desc("filename"));
-static cl::opt<std::string> generator("generator", cl::desc("select the source generator"), cl::value_desc("generator name"));
-static cl::opt<bool>        parseIncluded("parse-included", cl::desc("parse included files"));
-static cl::opt<bool>        useNamespaces("use-namespcaes", cl::desc("use namespcaes instead of template specialization"));
-
-cl::opt<bool> verbose("v", cl::desc("verbose"));
+static cl::opt<std::string> outHeader("H", cl::desc("specify the name of the generated header file"), cl::value_desc("filename"),cl::cat(MyToolCategory));
+static cl::opt<std::string> outImpl("o", cl::desc("specify the name of the generated implementation file"), cl::value_desc("filename"),cl::cat(MyToolCategory));
+static cl::opt<std::string> srcInclude("i", cl::desc("specify include for source file"), cl::value_desc("filename"),cl::cat(MyToolCategory));
+static cl::opt<GeneratorType> generator("generator", cl::desc("Select the generator (default: standard):"),cl::init(standard),cl::cat(MyToolCategory),
+  cl::values(
+    clEnumValN(standard,"std", "standard c++ library"),
+     clEnumVal(qt5,            "Qt5 support")));
+static cl::opt<bool>        parseIncluded("parse-included", cl::desc("parse included files"),cl::cat(MyToolCategory));
+static cl::opt<GeneratorStyle> generatorStyle("generator-style", cl::desc("Select the generator style (default: namespaces):"),cl::init(namespaces),cl::cat(MyToolCategory),
+  cl::values(
+    clEnumVal(namespaces, "move code for different enums into namespaces"),
+     clEnumVal(templates,            "use template specialization to apply code to specific enums")));
+cl::opt<bool> verbose("v", cl::desc("verbose"),cl::cat(MyToolCategory));
 
 
 DeclarationMatcher EnumMatcher = enumDecl(hasAttr(clang::attr::Annotate)).bind("etgEnum");
@@ -151,13 +159,8 @@ int main (int           argc,
 
     CommonOptionsParser OptionsParser(argc, ARGV, MyToolCategory);
 
-    if (0 == generator.length())
-    {
-        generator = "std";
-    }
-
     if (!GeneratorFactory::select(generator,
-                                  useNamespaces))
+                                  namespaces==generatorStyle))
     {
         std::cerr << "generator '" << generator << "' not found" << std::endl;
 

@@ -42,12 +42,12 @@ const GeneratorFactory * GeneratorFactory::get ()
  * @param name TODO
  * @return TODO
  */
-bool GeneratorFactory::select (const std::string & name,
-                               bool                _useNamespaces)
+bool GeneratorFactory::select (GeneratorType _type,
+                        bool                _useNamespaces)
 {
     for (auto & I : generators)
     {
-        if ((I->getUsesNamespaces() == _useNamespaces) && (I->getName() == name))
+        if ((I->getUsesNamespaces() == _useNamespaces) && (I->getType()==_type))
         {
             selected = I;
 

@@ -35,7 +35,7 @@ uncrustify (FILES ${HEADERS} ${SOURCES} TARGET etg)
 #
 
 add_executable (etg ${SOURCES})
-target_link_libraries (etg ${CLANG_LIBS} ${CLANG_LIBS} pthread ncurses dl z ${CLANG_LIBS})
+target_link_libraries (etg pthread ncurses dl z clang LLVM clang-cpp)
 
 
 #

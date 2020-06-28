@@ -30,14 +30,9 @@ GeneratorFactoryQt5::GeneratorFactoryQt5 ()
 {
 }
 
-
-/*! @brief
- *
- * @return TODO
- */
-const std::string & GeneratorFactoryQt5::getName ()
+GeneratorType GeneratorFactoryQt5::getType()
 {
-    return name;
+    return qt5;
 }
 
 

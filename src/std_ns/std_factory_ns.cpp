@@ -30,14 +30,9 @@ GeneratorFactoryStdNs::GeneratorFactoryStdNs ()
 {
 }
 
-
-/*! @brief
- *
- * @return TODO
- */
-const std::string & GeneratorFactoryStdNs::getName ()
+GeneratorType GeneratorFactoryStdNs::getType()
 {
-    return name;
+    return standard;
 }
 
 

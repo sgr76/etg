@@ -30,4 +30,4 @@ enum class TestEnum
 
     Value_2 ETG_TOKEN("special value"),
     Value_4
-} ETG("debug, cast, token, translation, iterator, format");
+} ETG("debug, cast, token, translation, iterator, libfmt");

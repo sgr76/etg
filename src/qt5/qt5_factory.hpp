@@ -48,7 +48,7 @@ public:
     std::shared_ptr<EtgImplementation> newImplementation (const std::string _filename) const override;
 
 protected:
-    const std::string & getName () override;
+    GeneratorType getType () override;
 
     bool getUsesNamespaces () override;
 

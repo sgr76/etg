@@ -229,7 +229,7 @@ void EtgEnum::parseEnumAttrItem (const std::string & attr)
         addIterator = true;
     }
 
-    if ("format" == attr)
+    if ("libfmt" == attr)
     {
         addFormat = true;
     }
