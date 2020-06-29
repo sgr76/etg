@@ -22,6 +22,8 @@ enabled_uncrustify ()
 
 set (CMAKE_INCLUDE_CURRENT_DIR ON)
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -ggdb -O2 ${LLVM_CFLAGS}")
+option (ENABLE_TESTS "Enable tests" OFF)
+
 include_directories (${CLANG_INCLUDE_DIRS})
 link_directories (${CLANG_LIBRARY_DIRS})
 
@@ -32,7 +34,10 @@ link_directories (${CLANG_LIBRARY_DIRS})
 
 add_subdirectory (include)
 add_subdirectory (src)
-add_subdirectory (test)
+
+if (ENABLE_TESTS)
+  add_subdirectory (test)
+endif()
 
 
 #

@@ -3,6 +3,7 @@
 #
 
 list (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+find_package (Clang COMPONENTS clangTooling clangBasic clangASTMatchers clangAST clangFrontend LLVMSupport clangDriver clangFormat clangLex clangRewrite clangToolingCore LLVMOption LLVMCore LLVMMC clangEdit clangParse clangSema clangSerialization LLVMBitReader LLVMProfileData LLVMMCParser clangAnalysis REQUIRED)
 
 
 #
@@ -35,7 +36,7 @@ uncrustify (FILES ${HEADERS} ${SOURCES} TARGET etg)
 #
 
 add_executable (etg ${SOURCES})
-target_link_libraries (etg pthread ncurses dl z clang LLVM clang-cpp)
+target_link_libraries (etg ${CLANG_LIBS} ${CLANG_LIBS} pthread dl z ncurses)
 
 
 #
