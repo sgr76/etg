@@ -3,7 +3,16 @@
 #
 
 list (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
-find_package (Clang COMPONENTS clangTooling clangBasic clangASTMatchers clangAST clangFrontend LLVMSupport clangDriver clangFormat clangLex clangRewrite clangToolingCore LLVMOption LLVMCore LLVMMC clangEdit clangParse clangSema clangSerialization LLVMBitReader LLVMProfileData LLVMMCParser clangAnalysis REQUIRED)
+find_package (Clang COMPONENTS clangTooling clangBasic clangASTMatchers clangAST clangFrontend clangDriver clangFormat clangLex clangRewrite clangToolingCore LLVMOption LLVMCore LLVMMC clangEdit clangParse clangSema clangSerialization LLVMBitReader LLVMProfileData LLVMMCParser clangAnalysis QUIET)
+find_package (Clang COMPONENTS LLVM clang-cpp REQUIRED)
+find_library (LIB_PTHREAD pthread)
+find_library (LIB_DL dl)
+find_library (LIB_Z z)
+find_library (LIB_NCURSES ncurses)
+find_library (LIB_TINFO tinfo)
+
+include_directories (${CLANG_INCLUDE_DIRS})
+link_directories (${CLANG_LIBRARY_DIRS})
 
 
 #
@@ -36,7 +45,7 @@ uncrustify (FILES ${HEADERS} ${SOURCES} TARGET etg)
 #
 
 add_executable (etg ${SOURCES})
-target_link_libraries (etg ${CLANG_LIBS} ${CLANG_LIBS} pthread dl z ncurses)
+target_link_libraries (etg ${CLANG_LIBS} ${LIB_PTHREAD} ${LIB_DL} ${LIB_Z} ${LIB_NCURSES} ${LIB_TINFO})
 
 
 #

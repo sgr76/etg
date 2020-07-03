@@ -11,7 +11,8 @@ enable_testing ()
 list (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
 find_package (ProjectMacros)
-find_package (Clang COMPONENTS clangTooling clangBasic clangASTMatchers clangAST clangFrontend LLVMSupport clangDriver clangFormat clangLex clangRewrite clangToolingCore LLVMOption LLVMCore LLVMMC clangEdit clangParse clangSema clangSerialization LLVMBitReader LLVMProfileData LLVMMCParser clangAnalysis REQUIRED)
+# find_package (Clang COMPONENTS clangTooling clangBasic clangASTMatchers clangAST clangFrontend clangDriver clangFormat clangLex clangRewrite clangToolingCore LLVMOption LLVMCore LLVMMC clangEdit clangParse clangSema clangSerialization LLVMBitReader LLVMProfileData LLVMMCParser clangAnalysis QUIET)
+# find_package (Clang COMPONENTS LLVMSupport REQUIRED)
 
 enabled_uncrustify ()
 
@@ -23,9 +24,6 @@ enabled_uncrustify ()
 set (CMAKE_INCLUDE_CURRENT_DIR ON)
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -ggdb -O2 ${LLVM_CFLAGS}")
 option (ENABLE_TESTS "Enable tests" OFF)
-
-include_directories (${CLANG_INCLUDE_DIRS})
-link_directories (${CLANG_LIBRARY_DIRS})
 
 
 #
