@@ -157,7 +157,7 @@ int main (int           argc,
     ARGV[argc++] = "-DETG_SYMBOLS";
     ARGV[argc++] = "-Wno-pragma-once-outside-header";
 
-    CommonOptionsParser OptionsParser(argc, ARGV, MyToolCategory);
+    auto OptionsParser =CommonOptionsParser::create(argc, ARGV, MyToolCategory);
 
     if (!GeneratorFactory::select(generator,
                                   namespaces==generatorStyle))
@@ -174,7 +174,7 @@ int main (int           argc,
         }
     }
 
-    ClangTool Tool(OptionsParser.getCompilations(), OptionsParser.getSourcePathList());
+    ClangTool Tool(OptionsParser->getCompilations(), OptionsParser->getSourcePathList());
 
     delete[] ARGV;
 
