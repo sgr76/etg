@@ -12,7 +12,9 @@ int main (int     argc,
     out << Value_2 << " => " << etg<TestEnum>::debugSymbol(Value_2) << endl;
 
     // token
+    out << "token '" << etg<TestEnum>::token(TestEnum::Value_1) << "' of " << etg<TestEnum>::cast("Value_1") << endl;
     out << "token '" << etg<TestEnum>::token(TestEnum::Value_2) << "' of " << etg<TestEnum>::cast("special value") << endl;
+    out << "alias 'very special' of " << etg<TestEnum>::cast("very special") << endl;
 
     // cast
     try

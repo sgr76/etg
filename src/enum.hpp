@@ -87,8 +87,9 @@ protected:
 protected:
     struct Item
     {
-        std::string name;
-        std::string text;
+        std::string            name;
+        std::string            text;
+        std::list<std::string> aliases;
 
         bool defaultValue;
     };

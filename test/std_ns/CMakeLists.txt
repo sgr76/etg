@@ -91,4 +91,4 @@ test_definition (NAME std_ns_i_c_full        PREFIX ns_i_c_full)
 # extra targets
 #
 
-uncrustify (FILES ${UNCRUSTIFY_FILES} TARGET std_ns_tests)
+# uncrustify (FILES ${UNCRUSTIFY_FILES} TARGET std_ns_tests)

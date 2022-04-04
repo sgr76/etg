@@ -272,6 +272,13 @@ void EtgEnum::parseItem (const clang::EnumConstantDecl * ec)
             missingToken = false;
         }
 
+        if (0 == value.compare(0,
+                               10,
+                               "etg_alias "))
+        {
+            item->aliases.push_back(value.substr(10));
+        }
+
         if (0 == value.compare("etg_invalid_value"))
         {
             item->defaultValue = true;

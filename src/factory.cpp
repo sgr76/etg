@@ -43,11 +43,11 @@ const GeneratorFactory * GeneratorFactory::get ()
  * @return TODO
  */
 bool GeneratorFactory::select (GeneratorType _type,
-                        bool                _useNamespaces)
+                               bool          _useNamespaces)
 {
     for (auto & I : generators)
     {
-        if ((I->getUsesNamespaces() == _useNamespaces) && (I->getType()==_type))
+        if ((I->getUsesNamespaces() == _useNamespaces) && (I->getType() == _type))
         {
             selected = I;
 

@@ -117,4 +117,4 @@ test_definition (NAME qt5_ns_i_c_full        PREFIX ns_i_c_full)
 # extra targets
 #
 
-uncrustify (FILES ${UNCRUSTIFY_FILES} TARGET qt5_tests)
+#uncrustify (FILES ${UNCRUSTIFY_FILES} TARGET qt5_tests)

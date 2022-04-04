@@ -30,7 +30,8 @@ GeneratorFactoryQt5::GeneratorFactoryQt5 ()
 {
 }
 
-GeneratorType GeneratorFactoryQt5::getType()
+
+GeneratorType GeneratorFactoryQt5::getType ()
 {
     return qt5;
 }

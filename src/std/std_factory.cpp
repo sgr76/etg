@@ -30,7 +30,8 @@ GeneratorFactoryStd::GeneratorFactoryStd ()
 {
 }
 
-GeneratorType GeneratorFactoryStd::getType()
+
+GeneratorType GeneratorFactoryStd::getType ()
 {
     return standard;
 }

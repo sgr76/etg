@@ -30,10 +30,13 @@ GeneratorFactoryQt5Ns::GeneratorFactoryQt5Ns ()
 {
 }
 
-GeneratorType GeneratorFactoryQt5Ns::getType()
+
+GeneratorType GeneratorFactoryQt5Ns::getType ()
 {
     return qt5;
 }
+
+
 bool GeneratorFactoryQt5Ns::getUsesNamespaces ()
 {
     return true;

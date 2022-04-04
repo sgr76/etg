@@ -39,8 +39,10 @@ class EtgScope;
 class EtgHeader;
 class EtgImplementation;
 
-enum GeneratorType{
-    standard,qt5
+enum GeneratorType
+{
+    standard,
+    qt5
 };
 
 
@@ -55,7 +57,7 @@ protected:
 public:
     static const GeneratorFactory * get ();
     static bool select (GeneratorType _type,
-                        bool                _useNamespaces);
+                        bool          _useNamespaces);
 
     virtual std::shared_ptr<EtgEnum> newEnum (const clang::EnumDecl * ed) const = 0;
 
@@ -71,8 +73,8 @@ public:
     virtual std::shared_ptr<EtgImplementation> newImplementation (const std::string _filename) const = 0;
 
 protected:
-    virtual GeneratorType getType () = 0;
-    virtual bool getUsesNamespaces ()      = 0;
+    virtual GeneratorType getType ()  = 0;
+    virtual bool getUsesNamespaces () = 0;
     static void registerGenerator (std::shared_ptr<GeneratorFactory> generator);
 
     template<class T>
@@ -84,7 +86,6 @@ protected:
             GeneratorFactory::registerGenerator(std::shared_ptr<GeneratorFactory>(new T));
         }
     };
-
 
 private:
     static std::shared_ptr<GeneratorFactory>             selected;

@@ -27,6 +27,6 @@
 enum TestEnum
 {
     Value_1,
-    Value_2 ETG_TOKEN("special value"),
+    Value_2 ETG_TOKEN("special value") ETG_ALIAS("very special"),
     Value_4
 } ETG("debug, cast, token, translation, iterator");

@@ -24,6 +24,7 @@
 #if defined ETG_SYMBOLS
 
 #define ETG_TOKEN(A) __attribute__((annotate("etg_text " A)))
+#define ETG_ALIAS(A) __attribute__((annotate("etg_alias " A)))
 #define ETG_INVALID __attribute__((annotate("etg_invalid_value")))
 // #define ETG_VALUE(A) __attribute__((annotate("etg_value " # A)))
 
@@ -33,6 +34,7 @@
 #else // if defined ETG_SYMBOLS
 
 #define ETG_TOKEN(A)
+#define ETG_ALIAS(A)
 #define ETG_INVALID
 // #define ETG_VALUE(A) = A
 

@@ -221,7 +221,7 @@ void EtgImplementationQt5Ns::generateMethods_Exception_InvalidValue (std::ofstre
         }
         else
         {
-            out << "  return enum2translation.value(" << _enum->getInvalidValue() << ");" << std::endl;
+            out << "  return enum2translation.value(" << _enum->getInvalidValue() << ")();" << std::endl;
         }
 
         out << "}" << std::endl << std::endl;

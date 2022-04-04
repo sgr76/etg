@@ -30,7 +30,8 @@ GeneratorFactoryStdNs::GeneratorFactoryStdNs ()
 {
 }
 
-GeneratorType GeneratorFactoryStdNs::getType()
+
+GeneratorType GeneratorFactoryStdNs::getType ()
 {
     return standard;
 }

@@ -135,10 +135,29 @@ void EtgEnumQt5Ns::generateValues (std::ofstream     & out,
                 });
 
                 out << (first ? "" : ",") << " { \"" << tmp << "\", " << fqEnum << "::" << I->name << " }";
+
+                for (auto & J:I->aliases)
+                {
+                    tmp = J;
+
+                    std::transform(tmp.begin(),
+                                   tmp.end(),
+                                   tmp.begin(),
+                                   [](unsigned char c) {
+                        return std::toupper(c);
+                    });
+
+                    out << ", { \"" << tmp << "\", " << fqEnum << "::" << I->name << " }";
+                }
             }
             else
             {
                 out << (first ? "" : ",") << " { \"" << I->text << "\", " << fqEnum << "::" << I->name << " }";
+
+                for (auto & J:I->aliases)
+                {
+                    out << ", { \"" << J << "\", " << fqEnum << "::" << I->name << " }";
+                }
             }
 
             first = false;
