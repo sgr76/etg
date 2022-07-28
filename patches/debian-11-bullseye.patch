@@ -1,0 +1,47 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 65f138f..b8c0b9a 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -41,3 +41,20 @@ endif()
+ #
+ 
+ install (FILES COPYING COPYING.LESSER DESTINATION share/doc/etg)
++
++
++#
++# package
++#
++
++set (CPACK_PACKAGE_VERSION "0.9")
++set (CPACK_PACKAGE_CONTACT "sgroth@gmx.de")
++set (CPACK_PACKAGE_VENDOR "Sebastian Groth")
++set (CPACK_PACKAGE_DESCRIPTION_SUMMARY "etg: c++ string table generator for enumerations")
++set (CPACK_DEBIAN_PACKAGE_HOMEPAGE "http://")
++set (CPACK_GENERATOR "DEB")
++set (CPACK_DEBIAN_PACKAGE_DEPENDS "libclang-cpp11 (>= 1:11.0)")
++set (CPACK_PACKAGING_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
++
++include (CPack)
++
+diff --git a/src/main.cpp b/src/main.cpp
+index 6f13281..5d1095b 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -160,7 +160,7 @@ int main (int           argc,
+     ARGV[argc++] = "-DETG_SYMBOLS";
+     ARGV[argc++] = "-Wno-pragma-once-outside-header";
+ 
+-    auto OptionsParser = CommonOptionsParser::create(argc, ARGV, MyToolCategory);
++    CommonOptionsParser OptionsParser (argc, ARGV, MyToolCategory);
+ 
+     if (!GeneratorFactory::select(generator,
+                                   namespaces == generatorStyle))
+@@ -177,7 +177,7 @@ int main (int           argc,
+         }
+     }
+ 
+-    ClangTool Tool(OptionsParser->getCompilations(), OptionsParser->getSourcePathList());
++    ClangTool Tool(OptionsParser.getCompilations(), OptionsParser.getSourcePathList());
+ 
+     delete[] ARGV;
+ 
