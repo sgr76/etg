@@ -2,16 +2,10 @@
 # extra CMake macros
 #
 
-list (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
-find_package (Clang COMPONENTS LLVM clang-cpp REQUIRED)
-find_library (LIB_PTHREAD pthread)
-find_library (LIB_DL dl)
-find_library (LIB_Z z)
-find_library (LIB_NCURSES ncurses)
-find_library (LIB_TINFO tinfo)
+find_package (Clang REQUIRED CONFIG)
+find_program (CLANG_BINARY clang REQUIRED)
 
 include_directories (${CLANG_INCLUDE_DIRS})
-link_directories (${CLANG_LIBRARY_DIRS})
 
 
 #
@@ -44,14 +38,13 @@ uncrustify (FILES ${HEADERS} ${SOURCES} TARGET etg)
 #
 
 add_executable (etg ${SOURCES})
-target_link_libraries (etg ${CLANG_LIBS} ${LIB_PTHREAD} ${LIB_DL} ${LIB_Z} ${LIB_NCURSES} ${LIB_TINFO})
+target_link_libraries (etg LLVM clang-cpp)
 
 
 #
 # install
 #
 
-get_filename_component (LLVM_BIN_DIR ${LLVM_CONFIG_EXECUTABLE} DIRECTORY CACHE)
+get_filename_component (CLANG_BINARY_DIR ${CLANG_BINARY} DIRECTORY)
 
-install (TARGETS etg DESTINATION ${LLVM_BIN_DIR})
-
+install (TARGETS etg DESTINATION ${CLANG_BINARY_DIR})
