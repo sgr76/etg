@@ -3,7 +3,6 @@
 #
 
 list (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
-find_package (Clang COMPONENTS clangTooling clangBasic clangASTMatchers clangAST clangFrontend clangDriver clangFormat clangLex clangRewrite clangToolingCore LLVMOption LLVMCore LLVMMC clangEdit clangParse clangSema clangSerialization LLVMBitReader LLVMProfileData LLVMMCParser clangAnalysis QUIET)
 find_package (Clang COMPONENTS LLVM clang-cpp REQUIRED)
 find_library (LIB_PTHREAD pthread)
 find_library (LIB_DL dl)
