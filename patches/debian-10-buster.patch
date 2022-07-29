@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 65f138f..931acd0 100644
+index 65f138f..0a61a5c 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -41,3 +41,20 @@ endif()
@@ -18,11 +18,24 @@ index 65f138f..931acd0 100644
 +set (CPACK_PACKAGE_DESCRIPTION_SUMMARY "etg: c++ string table generator for enumerations")
 +set (CPACK_DEBIAN_PACKAGE_HOMEPAGE "http://")
 +set (CPACK_GENERATOR "DEB")
-+set (CPACK_DEBIAN_PACKAGE_DEPENDS "libclang-cpp11 (>= 1:11.0), clang (>=1:11.0)")
++set (CPACK_DEBIAN_PACKAGE_DEPENDS "clang (>= 1:7.0), libclang1-7 (>= 1:7.0)")
 +set (CPACK_PACKAGING_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
 +
 +include (CPack)
 +
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 8ab3272..a57038e 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -38,7 +38,7 @@ uncrustify (FILES ${HEADERS} ${SOURCES} TARGET etg)
+ #
+ 
+ add_executable (etg ${SOURCES})
+-target_link_libraries (etg LLVM clang-cpp)
++target_link_libraries (etg LLVM clang clangTooling)
+ 
+ 
+ #
 diff --git a/src/main.cpp b/src/main.cpp
 index 6f13281..5d1095b 100644
 --- a/src/main.cpp
