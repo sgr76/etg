@@ -72,20 +72,11 @@ public:
 
     virtual std::shared_ptr<EtgImplementation> newImplementation (const std::string _filename) const = 0;
 
+    static void registerGenerator (std::shared_ptr<GeneratorFactory> generator);
+
 protected:
     virtual GeneratorType getType ()  = 0;
     virtual bool getUsesNamespaces () = 0;
-    static void registerGenerator (std::shared_ptr<GeneratorFactory> generator);
-
-    template<class T>
-    class GeneratorRegistration
-    {
-    public:
-        GeneratorRegistration ()
-        {
-            GeneratorFactory::registerGenerator(std::shared_ptr<GeneratorFactory>(new T));
-        }
-    };
 
 private:
     static std::shared_ptr<GeneratorFactory>             selected;

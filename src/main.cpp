@@ -34,6 +34,10 @@
 #include "header.hpp"
 #include "implementation.hpp"
 #include "factory.hpp"
+#include "std/std_factory.hpp"
+#include "std_ns/std_factory_ns.hpp"
+#include "qt5/qt5_factory.hpp"
+#include "qt5_ns/qt5_factory_ns.hpp"
 
 
 using namespace clang::tooling;
@@ -138,6 +142,11 @@ public:
 int main (int           argc,
           const char ** argv)
 {
+    GeneratorFactory::registerGenerator(std::make_shared<GeneratorFactoryStd>());
+    GeneratorFactory::registerGenerator(std::make_shared<GeneratorFactoryStdNs>());
+    GeneratorFactory::registerGenerator(std::make_shared<GeneratorFactoryQt5>());
+    GeneratorFactory::registerGenerator(std::make_shared<GeneratorFactoryQt5Ns>());
+
     char const ** ARGV(new char const *[argc + 3]);
     bool          haveDoubleDash = false;
 

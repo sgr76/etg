@@ -20,7 +20,7 @@ enabled_uncrustify ()
 #
 
 set (CMAKE_INCLUDE_CURRENT_DIR ON)
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -ggdb -O2 ${LLVM_CFLAGS}")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -ggdb -O2 ${LLVM_CFLAGS}")
 option (ENABLE_TESTS "Enable tests" OFF)
 
 

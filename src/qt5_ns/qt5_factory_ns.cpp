@@ -100,8 +100,3 @@ std::shared_ptr<EtgImplementation> GeneratorFactoryQt5Ns::newImplementation (con
 {
     return std::shared_ptr<EtgImplementation>(new EtgImplementationQt5Ns(_filename));
 }
-
-
-const std::string GeneratorFactoryQt5Ns::name = "qt5";
-
-GeneratorFactory::GeneratorRegistration<GeneratorFactoryQt5Ns> GeneratorFactoryQt5Ns::factory;

@@ -51,9 +51,4 @@ protected:
     GeneratorType getType () override;
 
     bool getUsesNamespaces () override;
-
-private:
-    static const std::string                          name;
-
-    static GeneratorRegistration<GeneratorFactoryQt5> factory;
 };

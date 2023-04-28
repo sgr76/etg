@@ -100,8 +100,3 @@ std::shared_ptr<EtgImplementation> GeneratorFactoryStd::newImplementation (const
 {
     return std::shared_ptr<EtgImplementation>(new EtgImplementationStd(_filename));
 }
-
-
-const std::string GeneratorFactoryStd::name = "std";
-
-GeneratorFactory::GeneratorRegistration<GeneratorFactoryStd> GeneratorFactoryStd::factory;
